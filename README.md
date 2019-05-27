@@ -15,6 +15,20 @@ cuda=10.0
 
 ## 实验
 
+### PRLab1 MLP
+
+实验通过mlp进行手写数据识别
+```
+.
+├── dataset #存放数据集
+├── main.py
+└── mlp
+    ├── __init__.py
+    ├── mlp.py  #搭建网络
+    └── run.py  #测试运行
+```
+
+
 ### PRLab2 AlexNet
 
 实验手动搭建AlexNet在CIFA10数据集上进行训练并通过tensorboardX来可视化展现
