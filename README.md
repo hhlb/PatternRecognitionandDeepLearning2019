@@ -63,3 +63,27 @@ cuda=10.0
 ```
 
 ### PRLab3 VGG11 ResNet
+
+实验手动搭建resnet18和vgg11进行CIFA10的分类，其中数据集需要手动加载
+```
+.
+├── dataset
+│   └── cifar-10-batches-py
+├── graph   #tensorboard输出
+│   ├── events.out.tfevents.1558956923.hhlb-MS-7B38
+│   └── events.out.tfevents.1558957031.hhlb-MS-7B38
+├── main.py
+├── net
+│   ├── __init__.py
+│   ├── net.py
+│   ├── resnet.py
+│   └── vgg.py
+├── readdata
+│   ├── __init__.py
+│   ├── mydata.py
+│   └── path.py
+├── run.sh
+└── settings.py
+```
+
+**Lab3使用说明**：`python main.py -h`
