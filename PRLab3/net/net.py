@@ -18,12 +18,14 @@ def compute_accurate(output, label):
     test = np.float32(test)
     return np.mean(test)
 
+
 # 运行类 主要书写网络的调用过程和数据集加载的过程
 class Run(object):
-    def __init__(self, net, device, lr, train):
+    def __init__(self, net, device, lr, train, opt):
         self.device = torch.device(device)
         self.lr = lr
         self.train = train
+        self.optimizer = opt
         # 数据预处理，转为tensor
         transform = tran.Compose([tran.ToTensor(), tran.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
         # 加载训练数据集
@@ -34,7 +36,7 @@ class Run(object):
         self.testloader = torch.utils.data.DataLoader(testset, batch_size=100, shuffle=False, num_workers=0)
         print("数据加载完成")
         # 定义Summary_Writer
-        self.writer = SummaryWriter("./graph")  # 数据存放于/graph文件夹
+        self.writer = SummaryWriter()  # 数据存放于/graph文件夹
         if net == 'resnet':
             self.ResNet_run()
         elif net == 'vgg':
@@ -47,7 +49,10 @@ class Run(object):
         else:
             net = VggNet().to(self.device)
             loss_fun = nn.CrossEntropyLoss().to(self.device)
-            opt = torch.optim.SGD(net.parameters(), lr=self.lr, momentum=0.9)
+            if self.optimizer == 'sgd':
+                opt = torch.optim.SGD(net.parameters(), lr=self.lr, momentum=0.9)
+            elif self.optimizer == 'adam':
+                opt = torch.optim.Adam(net.parameters(), lr=self.lr)
             a = 1
             for epoch in range(5):  # 训练5轮
                 running_loss = 0.0
@@ -67,8 +72,8 @@ class Run(object):
                     if i % 100 == 99:
                         print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 100))
                         print('[%d, %5d] accurate: %.3f' % (epoch + 1, i + 1, running_accurate / 100))
-                        self.writer.add_scalar("VggNet_loss", running_loss, a)
-                        self.writer.add_scalar("VggNet_accurate", running_accurate, a)
+                        # self.writer.add_scalar("VggNet_loss", running_loss, a)
+                        # self.writer.add_scalar("VggNet_accurate", running_accurate, a)
                         running_loss = 0.0
                         running_accurate = 0.0
                         a += 1
@@ -82,7 +87,7 @@ class Run(object):
             outputs = net(inputs)
             t = compute_accurate(outputs, labels)
             print("第", i, "个batch准确率：", t)
-            self.writer.add_scalar('VggNet_test_acc', t, i + 1)
+            self.writer.add_scalar('VGGTest_' + self.optimizer + '/lr-' + str(self.lr), t, i + 1)
 
     def ResNet_run(self):  # ResNet训练
         if self.train is False:
@@ -90,7 +95,10 @@ class Run(object):
         else:
             net = ResNet().to(self.device)
             loss_fun = nn.CrossEntropyLoss().to(self.device)
-            opt = torch.optim.SGD(net.parameters(), lr=self.lr, momentum=0.9)
+            if self.optimizer == 'sgd':
+                opt = torch.optim.SGD(net.parameters(), lr=self.lr, momentum=0.9)
+            elif self.optimizer == 'adam':
+                opt = torch.optim.Adam(net.parameters(), lr=self.lr)
             a = 1
             for epoch in range(5):  # 训练5轮
                 running_loss = 0.0
@@ -110,8 +118,8 @@ class Run(object):
                     if i % 100 == 99:
                         print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 100))
                         print('[%d, %5d] accurate: %.3f' % (epoch + 1, i + 1, running_accurate / 100))
-                        self.writer.add_scalar("ResNet_loss", running_loss, a)
-                        self.writer.add_scalar("ResNet_accurate", running_accurate, a)
+                        # self.writer.add_scalar("ResNet_loss", running_loss, a)
+                        # self.writer.add_scalar("ResNet_accurate", running_accurate, a)
                         running_loss = 0.0
                         running_accurate = 0.0
                         a += 1
@@ -125,4 +133,4 @@ class Run(object):
             outputs = net(inputs)
             t = compute_accurate(outputs, labels)
             print("第", i, "个batch准确率：", t)
-            self.writer.add_scalar('ResNet_test_acc', t, i + 1)
+            self.writer.add_scalar('ResNetTest_' + self.optimizer + '/lr-' + str(self.lr), t, i + 1)
