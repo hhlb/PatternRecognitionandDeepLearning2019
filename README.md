@@ -67,11 +67,6 @@ cuda=10.0
 实验手动搭建resnet18和vgg11进行CIFA10的分类，其中数据集需要手动加载
 ```
 .
-├── dataset
-│   └── cifar-10-batches-py
-├── graph   #tensorboard输出
-│   ├── events.out.tfevents.1558956923.hhlb-MS-7B38
-│   └── events.out.tfevents.1558957031.hhlb-MS-7B38
 ├── main.py
 ├── net
 │   ├── __init__.py
@@ -82,6 +77,28 @@ cuda=10.0
 │   ├── __init__.py
 │   ├── mydata.py
 │   └── path.py
+├── README.md
+├── runs
+│   ├── May28_11-22-56_hhlb-MS-7B38
+│   │   └── events.out.tfevents.1559013776.hhlb-MS-7B38
+│   ├── May28_11-24-43_hhlb-MS-7B38
+│   │   └── events.out.tfevents.1559013883.hhlb-MS-7B38
+│   ├── May28_11-26-18_hhlb-MS-7B38
+│   │   └── events.out.tfevents.1559013978.hhlb-MS-7B38
+│   ├── May28_11-28-08_hhlb-MS-7B38
+│   │   └── events.out.tfevents.1559014088.hhlb-MS-7B38
+│   ├── May28_11-29-43_hhlb-MS-7B38
+│   │   └── events.out.tfevents.1559014183.hhlb-MS-7B38
+│   ├── May28_11-31-36_hhlb-MS-7B38
+│   │   └── events.out.tfevents.1559014296.hhlb-MS-7B38
+│   ├── May28_11-35-07_hhlb-MS-7B38
+│   │   └── events.out.tfevents.1559014507.hhlb-MS-7B38
+│   ├── May28_11-37-05_hhlb-MS-7B38
+│   │   └── events.out.tfevents.1559014625.hhlb-MS-7B38
+│   ├── May28_11-42-21_hhlb-MS-7B38
+│   │   └── events.out.tfevents.1559014941.hhlb-MS-7B38
+│   └── May28_11-50-11_hhlb-MS-7B38
+│       └── events.out.tfevents.1559015411.hhlb-MS-7B38
 ├── run.sh
 └── settings.py
 ```
