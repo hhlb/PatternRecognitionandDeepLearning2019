@@ -1,3 +1,3 @@
 device='cuda:0'
-net='vgg'
+net='resnet'
 lr=0.1
