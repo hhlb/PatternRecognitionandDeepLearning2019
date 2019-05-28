@@ -1,3 +1,4 @@
 device='cuda:0'
-net='resnet'
-lr=0.1
+net='vgg'
+lr=0.001
+optimizer='adam'
