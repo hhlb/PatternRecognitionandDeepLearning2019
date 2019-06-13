@@ -12,3 +12,7 @@ d_lr = 0.001
 steps = 2000
 # Device
 device = 'cpu'
+# c
+c = 0.08
+# lambde
+LAMBDA = 10
