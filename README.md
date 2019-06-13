@@ -104,3 +104,56 @@ cuda=10.0
 ```
 
 **Lab3使用说明**：`python main.py -h`
+
+### PRLab4 RNN
+
+编写RNN网络实现函数预测，使用影评数据进行文本情感分析。
+
+```
+.
+├── dataset
+│   ├── rt-polarity-neg-unicode.txt
+│   ├── rt-polarity-pos-unicode.txt
+│   ├── rt-polarity.neg
+│   ├── rt-polarity.pos
+│   └── word.txt
+├── main.py
+├── mydata
+│   ├── __init__.py
+│   └── dataset.py
+├── net
+│   ├── Net.py
+│   ├── SentimentAnalysis.py
+│   ├── SentimentAnalysisSettings.py
+│   ├── SinusoidalPrediction.py
+│   └── SinusoidalPredictionSettings.py
+└── report
+```
+
+### PRLab5 GAN
+
+编写GAN WGAN WGAN-GP实现分布拟合
+
+```
+.
+├── Nets
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-37.pyc
+│   │   ├── dg.cpython-37.pyc
+│   │   ├── settings.cpython-37.pyc
+│   │   └── trian.cpython-37.pyc
+│   ├── dg.py
+│   ├── settings.py
+│   └── trian.py
+├── main.py
+├── mat
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-37.pyc
+│   │   └── data.cpython-37.pyc
+│   ├── data.py
+│   └── points.mat
+├── report
+└── results
+```
